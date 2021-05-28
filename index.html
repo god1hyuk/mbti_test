@@ -1,99 +1,73 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MBTI test</title>
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <div class="container">        
-        
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>만약 내가 이민을 간다면?</title>
+        <!-- Latest compiled and minified CSS -->
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="container-fluid">
         <article class="start">
-            
-            <h1 class="mt-5 text-center">나와 닮은 동물은?</h1>
-            <button type="button" class="btn btn-warning mt-5" onclick="start();">테스트 시작하기</button>
-        
+            <h1 class="text-center">만약 내가 이민을 간다면?</h1>
+            <button type="button" class="btn btn-primary text-center" onclick="start();">테스트 시작</button>
         </article>
         
-
-        <article class="question mt-5">
-            
-            <div class="progress">
-                
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            
+        <article class="question text-center">
+            <h1 id="step" class="mt-5">STEP</h1>
+            <div class="progress mt-5">
+                <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: calc(100/12*0%)"
+                    aria-valuenow="25"
+                    aria-valuemin="0"
+                    aria-valuemax="100"></div>
             </div>
-            
-            <!-- 문제 번호 -->
-            <h2 id="title" class="text-center mt-5">문제</h2>
-            
-            <!-- 문제 출력할  -->
-            <input type="hidden" id="type" value="EI">
-
-            <button id="A" type="button" class="btn btn-outline-warning mt-5">primary</button>
-            <button id="B" type="button" class="btn btn-outline-warning mt-5">primary</button>
-        
+            <h2 class="text-center mt-5" id="title">문제</h2>
+            <input type="hidden" value="EI" id="type">
+            <button id="A" type="button" class="btn btn-primary mt-5">Primary</button>
+            <button id="B" type="button" class="btn btn-primary mt-5">Primary</button>
         </article>
 
-        <input type="hidden" id="EI" value="0">
-        <input type="hidden" id="SN" value="0">
-        <input type="hidden" id="TF" value="0">
-        <input type="hidden" id="JP" value="0">
+        <article class="result mt-5 text-center">
+            <img id="img" src="" alt="" class="">
+            <h2 id="country" class="mt-3">나라이름</h2>
+            <h3 id="explain" class="mt-3">설명</h3>
+            
+            
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+            <div class="addthis_inline_share_toolbox sns mt-3"></div>
+            
+            <div id="bg"></div>
 
-    </div>
+        </article>
 
+        <input type="hidden" value="0" id="EI">
+        <input type="hidden" value="0" id="SN">
+        <input type="hidden" value="0" id="TF">
+        <input type="hidden" value="0" id="JP">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Popper JS -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-    <script>
-        function start() {
-            $('.start').hide();
-            $('.question').show();
-        }
+        <!-- Latest compiled JavaScript -->
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-        var num=1;
-
-        // EI
-        var q={
-            1: {"title":"문제 1번", "type":"EI", "A":"E", "B":"I"},
-            2: {"title":"문제 2번", "type":"EI", "A":"E", "B":"I"},
-            3: {"title":"문제 3번", "type":"EI", "A":"E", "B":"I"},
-            4: {"title":"문제 4번", "type":"SN", "A":"S", "B":"N"},
-            5: {"title":"문제 5번", "type":"SN", "A":"S", "B":"N"},
-            6: {"title":"문제 6번", "type":"SN", "A":"S", "B":"N"},
-            7: {"title":"문제 7번", "type":"TF", "A":"T", "B":"F"},
-            8: {"title":"문제 8번", "type":"TF", "A":"T", "B":"F"},
-            9: {"title":"문제 9번", "type":"TF", "A":"T", "B":"F"},
-            10: {"title":"문제 10번", "type":"JP", "A":"J", "B":"P"},
-            11: {"title":"문제 11번", "type":"JP", "A":"J", "B":"P"},
-            12: {"title":"문제 12번", "type":"JP", "A":"J", "B":"P"}
-        }
-
-        $("#A").click(function () {
-            var type = $("#type").val();
-            var preValue = $("#"+type).val();
-            $("#"+type).val(parseInt(preValue)+1);
-            console.log(parseInt(preValue)+1);
-            next();
-        }); 
-
-        function next() {
-            $("#title").html(q[num]["title"]);
-            $("#type").val(q[num]["type"]);
-            $("#A").html(q[num]["A"]);
-            $("#B").html(q[num]["B"]);
-            num++;
-        } 
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60862efe03da9674"></script>
 
 
 
-
-    </script>
-</body>
+        <script src="js/main.js"></script>
+    </body>
 </html>
